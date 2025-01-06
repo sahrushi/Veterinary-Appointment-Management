@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profiles</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background-color: #f8f9fa;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+      .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border-radius: 10px; /* Increased rounded corners */
+        }
+
+      .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+      .card-header {
+            background-color: #007bff;
+            color: white;
+            padding:.75rem 1.25rem;
+            margin-bottom: 0;
+        }
+
+      .card-body {
+            padding: 1.25rem;
+        }
+
+      .card-title {
+            margin-bottom:.5rem;
+            font-size: 1.25rem;
+            color: #007bff;
+        }
+
+      .card-text {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+      .footer-text {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="d-flex justify-content-between align-items-center pb-3">
+            <h1 class="text-center mb-4">Doctor Profiles</h1>
+            <a href="/user/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <% doctors.forEach(function(doctor) { %>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Dr.<%= doctor.username %>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Profile Details</h5>
+                                <p class="card-text"><strong>Gender:</strong> <%= doctor.gender %></p>
+                                <p class="card-text"><strong>Experience:</strong> <%= doctor.experience %> years</p>
+                                <p class="card-text"><strong>Contact:</strong> <%= doctor.contact %></p>
+                                <p class="card-text"><strong>Rating:</strong><%= doctor.avgRating %>/5</p>
+                                <hr>
+                                <h5>Reviews</h5>
+                                <hr>
+                                <% doctor.reviews.forEach(function(review) { %>
+                                    <p><strong>User:</strong> <%= typeof review.userId === 'object'? review.userId.username : 'Unknown' %></p>
+                                    <p><strong>Review:</strong> <%= review.comment %></p>
+                                    <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+                                    <hr>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

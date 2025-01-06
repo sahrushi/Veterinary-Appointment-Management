@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Pets</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+       .header {
+            background-color: #f8f9fa;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+       .pet-card {
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Increased rounded corners */
+            margin-bottom: 15px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Enhanced shadow */
+            transition: 0.3s; /* Smooth transition for hover effect */
+        }
+
+       .pet-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Darker shadow on hover */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            margin-left: 10px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+       .footer-text {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <nav>
+        <a href="/user/dashboard" class="btn btn-primary">Dashboard</a>
+        <a href="/user/add" class="btn btn-success">Add Pet</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1 class="text-center mb-4">Your Pets</h1>
+    <div class="row">
+        <% pets.forEach(pet => { %>
+            <div class="col-md-4">
+                <div class="card pet-card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= pet.petName %></h5>
+                        <p class="card-text">Type: <%= pet.type %>, Age: <%= pet.age %> years</p>
+                        <p class="card-text">Medical History: <%= pet.medicHistory %></p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+
+</body>
+</html>

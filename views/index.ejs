@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #9921e8;
+            background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+            font-family: 'Lato', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
+    <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section class="mt-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="col-span-1">
+                    <img src="/images/user.jpg" alt="User Icon" class="w-26 h-26 object-cover mb-4">
+                    <div style="padding-left: 3.25rem;">
+                      <a href="/user/login" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded shadow-lg hover:shadow-xl transition duration-200 block">User</a>
+                    </div>
+                </div>
+                <div class="col-span-1">
+                    <img src="/images/doctor.jpg" alt="Doctor Icon" class="w-26 h-26 object-cover mb-4">
+                    <div style="padding-left: 3.25rem;">
+                      <a href="/doctor/login" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded shadow-lg hover:shadow-xl transition duration-200 block">Doctor</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

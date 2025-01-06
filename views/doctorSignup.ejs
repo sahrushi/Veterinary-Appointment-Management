@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor SignUp</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      .body-bg {
+            background-color: #9921e8;
+            background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+        }
+    </style>
+</head>
+<body class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0" style="font-family:'Lato',sans-serif;">
+    <header class="max-w-lg mx-auto">
+        <a href="#">
+            <h1 class="text-4xl font-bold text-white text-center">VetConnect</h1>
+        </a>
+    </header>
+
+    <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+            <h3 class="font-bold text-2xl">Doctor SignUp</h3>
+            <p class="text-gray-600 pt-2">Join our team of dedicated professionals.</p>
+        </section>
+
+        <section class="mt-10">
+            <form method="post" autocomplete="on" action="/doctor/signUp" class="flex flex-col space-y-4" autocomplete="off">
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="doctorName">Name</label>
+                    <input type="text" id="doctorName" name="username" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded" required>
+                </div>
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                    <input type="email" id="email" name="email" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded" required>
+                </div>
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded" required>
+                </div>
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="gender">Gender</label>
+                    <select id="gender" name="gender" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded">
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="contact">Contact No.</label>
+                    <input type="number" id="contact" name="contact" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded" required>
+                </div>
+                <div class="rounded bg-gray-200 p-3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="experience">Years of Experience</label>
+                    <input type="number" id="experience" name="experience" class="w-full border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 py-2 rounded">
+                </div>
+                <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full">Sign Up</button>
+                <a href="/doctor/login" class="block text-center text-blue-500 hover:text-blue-800 mt-4">Already have an account? Log in</a>
+            </form>
+        </section>
+    </main>
+
+    <footer class="max-w-lg mx-auto flex justify-center text-white">
+        <a href="#" class="hover:underline">Contact</a>
+        <span class="mx-3">•</span>
+        <a href="#" class="hover:underline">Privacy</a>
+    </footer>
+</body>
+</html>

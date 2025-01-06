@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+     .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+        }
+     .logo-container {
+            display: flex; /* Flexbox for logo and title alignment */
+            align-items: center;
+        }
+     .logo-img {
+            width: 50px; /* Smaller logo for compactness */
+            height: auto;
+            margin-right: 10px; /* Space between logo and title */
+        }
+     .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+     .dashboard-container {
+            padding: 20px;
+        }
+     .appointments-list {
+            margin-top: 20px;
+            overflow-x: auto; /* Enable horizontal scrolling if necessary */
+        }
+     .appointment-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+     .appointment-item:hover {
+            background-color: #e9ecef;
+        }
+     .btn-custom {
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+     .btn-custom:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img src="/images/logo.jpg" alt="Logo" class="logo-img">
+        <span class="logo">VetConnect</span>
+    </div>
+    <nav>
+        <a href="/doctor/logout" class="btn btn-danger btn-custom">LogOut</a>
+    </nav>
+</header>
+
+<div class="container dashboard-container">
+    <h1 class="text-center mb-4">Welcome, Dr.<%= doctor.username %>!</h1>
+    <h2>Your Appointments</h2>
+    <ul class="list-group appointments-list">
+        <% appointments.forEach(appointment => { %>
+            <li class="list-group-item appointment-item">
+                <strong>User:</strong> <%= appointment.userInfo.username %><br>
+                <strong>Pet Name:</strong> <%= appointment.pet.petName %><br>
+                <strong>Date:</strong> <%= appointment.date.toDateString() %><br>
+                <strong>Time:</strong> <%= appointment.timeSlot %><br>
+                <strong>Purpose:</strong> <%= appointment.category %><br>
+                <strong>Status:</strong> <%= appointment.status %><br>
+                <button class="btn btn-sm btn-info btn-custom" onclick="viewDetails('<%= appointment.id %>')">View Details</button>
+            </li>
+        <% }); %>
+    </ul>
+</div>
+
+<script>
+    function viewDetails(appointmentId) {
+        var url = "/doctor/appointment/" + encodeURIComponent(appointmentId);
+        window.location.href = url;
+    };
+</script>
+</body>
+</html>

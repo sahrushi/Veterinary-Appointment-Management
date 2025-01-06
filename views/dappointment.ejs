@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif; /* Consistent font family */
+        }
+     .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff; /* Blue header background */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding around header contents */
+        }
+     .logo-container {
+            display: inline-block; /* Aligns the logo with the nav items */
+        }
+     .logo-img {
+            width: 100px; /* Adjust based on your logo's dimensions */
+            height: auto; /* Maintains aspect ratio */
+            vertical-align: middle; /* Aligns the logo vertically in the middle */
+        }
+     .details-container {
+            padding: 20px;
+        }
+        .logo {
+            font-size: 24px; /* Logo text size */
+            font-weight: bold; /* Bold font weight for the logo */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Card styling for consistency */
+     .card {
+          border-radius: 5px; /* Rounded corners */
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+          transition: all 0.3s ease; /* Smooth transition for hover effects */
+      }
+
+     .card:hover {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
+          transform: translateY(-2px); /* Slight lift effect on hover */
+      }
+      .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Keeps space between child elements inside the card body */
+        }
+
+        .button-container {
+            display: flex; /* Enables horizontal layout for the buttons */
+            justify-content: center; /* Centers the buttons horizontally */
+            gap: 10px; /* Adds space between the buttons */
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img src="/images/logo.jpg" alt="Appointment Details Logo" class="logo-img" style="height: 4.3rem;">
+    </div>
+    <span class="logo">VetConnect</span>
+    <nav>
+        <a href="/doctor/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        <a href="/doctor/logout" class="btn btn-danger btn-custom">LogOut</a>
+    </nav>
+</header>
+
+<div class="container details-container">
+    <h2>Appointment Details</h2>
+    
+    <!-- User Details -->
+    <div class="card">
+        <div class="card-header">User Information</div>
+        <div class="card-body">
+            <p><strong>Name:</strong> <%= appointment.userInfo.username %></p>
+            <p><strong>Email:</strong> <%= appointment.userInfo.email %></p>
+            <p><strong>Contact:</strong> <%= appointment.userInfo.contact %></p>
+        </div>
+    </div>
+  
+    <!-- Pet Details -->
+    <div class="card mt-3">
+        <div class="card-header">Pet Information</div>
+        <div class="card-body">
+            <p><strong>Name:</strong> <%= appointment.pet.petName %></p>
+            <p><strong>Type:</strong> <%= appointment.pet.type %></p>
+            <p><strong>Age:</strong> <%= appointment.pet.age %> Years</p>
+            <p><strong>Medical History:</strong> <%= appointment.pet.medicHistory %></p>
+        </div>
+    </div>
+    
+    <!-- Appointment Details -->
+    <div class="card mt-3">
+        <div class="card-header">Appointment Information</div>
+        <div class="card-body">
+            <p><strong>Date:</strong> <%= appointment.date.toDateString() %></p>
+            <p><strong>Time:</strong> <%= appointment.timeSlot %></p>
+            <p><strong>Purpose:</strong> <%= appointment.category %></p>
+            <p><strong>Status:</strong> <%= appointment.status %></p>
+            <div class="button-container"> <!-- Wrap buttons in a container for horizontal layout -->
+                <form action="/doctor/appointment/<%= appointment._id %>/status" method="post">
+                    <input type="hidden" name="status" value="confirmed">
+                    <button type="submit" class="btn btn-primary btn-custom">Confirm</button>
+                </form>
+                <form action="/doctor/appointment/<%= appointment._id %>/status" method="post">
+                    <input type="hidden" name="status" value="completed">
+                    <button type="submit" class="btn btn-primary btn-custom">Complete</button>
+                </form>
+            </div> <!-- End of button container -->
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

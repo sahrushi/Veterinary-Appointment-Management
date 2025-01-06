@@ -1,0 +1,54 @@
+/* Vibrant Purple Theme */
+:root {
+  --primary-color: #9921e8; /* Vibrant Purple */
+  --secondary-color: #f0f0f0; /* Light Grey */
+  --text-color: #ffffff; /* Bright White for Contrast */
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.btn-violet {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 18px; /* Increased button text size */
+  padding: 15px 30px; /* Increased padding for larger click area */
+}
+
+.btn-violet:hover,
+.btn-violet:focus,
+.btn-violet:active {
+  background-color: darken(var(--primary-color), 5%);
+  border-color: darken(var(--primary-color), 5%);
+}
+
+.card-title {
+  color: var(--text-color);
+  font-size: 24px; /* Increased title text size */
+}
+
+.img-wrapper img {
+  border-radius: 50%;
+  width: 300px; /* Increased image width */
+  height: 300px; /* Increased image height */
+  object-fit: cover;
+}
+
+.item-wrapper {
+  padding: 30px; /* Increased padding for better spacing */
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+@media (max-width: 768px) {
+.container {
+    padding: 0 15px;
+  }
+}

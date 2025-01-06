@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reschedule Appointment</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef; /* Light grey background */
+            font-family: 'Arial', sans-serif; /* Clean, professional font */
+        }
+       .booking-container {
+            padding: 30px;
+            background-color: #ffffff; /* White container for contrast */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            border-radius: 8px; /* Rounded corners for modern look */
+        }
+        h1 {
+            color: #343a40; /* Darker text for headings */
+        }
+       .booking-form {
+            margin-top: 25px;
+        }
+       .booking-form label {
+            display: block;
+            margin-top: 12px;
+            color: #495057; /* Slightly lighter text for labels */
+        }
+       .booking-form input[type="date"], 
+       .booking-form input[type="time"], 
+       .booking-form input[type="checkbox"],
+       .booking-form select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 5px;
+            border: 1px solid #ced4da; /* Softer border color */
+            background-color: #fff; /* Background color for inputs */
+        }
+       .booking-form button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 12px;
+            font-weight: bold; /* Make the button text bolder */
+        }
+       .booking-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reschedule Your Appointment</h2>
+    <form action="/user/appointment/<%= appointment._id %>/reschedule" method="post">
+        <div class="form-group">
+            <label for="newDate">Date</label>
+            <input type="date" class="form-control" id="newDate" name="newDate" required>
+        </div>
+        <div class="form-group">
+            <label for="newTime">Select Time Slot</label>
+            <select class="form-control" id="newTime" name="newTime" required>
+                <option value="" selected disabled>Select Time Slot</option>
+                <option value="09:00-10:00">09:00 - 10:00</option>
+                <option value="10:00-11:00">10:00 - 11:00</option>
+                <option value="11:00-12:00">11:00 - 12:00</option>
+                <option value="12:00-13:00">12:00 - 13:00</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-custom">Reschedule</button>
+    </form>
+</body>
+</html>

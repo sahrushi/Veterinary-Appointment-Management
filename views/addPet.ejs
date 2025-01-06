@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pet</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef; /* Light grey background */
+            font-family: 'Arial', sans-serif; /* Clean, professional font */
+        }
+      .add-pet-container {
+            padding: 30px;
+            background-color: #ffffff; /* White container for contrast */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            border-radius: 8px; /* Rounded corners for modern look */
+        }
+        h1 {
+            color: #343a40; /* Darker text for headings */
+        }
+      .add-pet-form {
+            margin-top: 25px;
+        }
+      .add-pet-form label {
+            display: block;
+            margin-top: 12px;
+            color: #495057; /* Slightly lighter text for labels */
+        }
+      .add-pet-form input[type="text"], 
+      .add-pet-form input[type="date"], 
+      .add-pet-form select,
+      .add-pet-form input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 5px;
+            border: 1px solid #ced4da; /* Softer border color */
+            background-color: #fff; /* Background color for inputs */
+        }
+      .add-pet-form button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 12px;
+            font-weight: bold; /* Make the button text bolder */
+        }
+      .add-pet-form button[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container add-pet-container">
+    <h1 class="text-center mb-4">Add New Pet</h1>
+    <form class="add-pet-form" action="/user/add" method="post">
+        <div class="form-group">
+            <label for="petName">Pet Name</label>
+            <input type="text" class="form-control" id="petName" name="petName" required>
+        </div>
+        <div class="form-group">
+            <label for="species">Species</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="" selected disabled>Select Species</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Medical History">Medical History</label>
+            <input type="text" class="form-control" id="medicHistory" name="medicHistory">
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" name="age">
+        </div>
+        <button type="submit" class="btn btn-success">Add Pet</button>
+    </form>
+</div>
+</body>
+</html>

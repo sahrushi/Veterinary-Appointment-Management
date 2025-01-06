@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif; /* Consistent font family */
+        }
+     .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff; /* Blue header background */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding around header contents */
+        }
+     .logo-container {
+            display: inline-block; /* Aligns the logo with the nav items */
+        }
+     .logo-img {
+            width: 100px; /* Adjust based on your logo's dimensions */
+            height: auto; /* Maintains aspect ratio */
+            vertical-align: middle; /* Aligns the logo vertically in the middle */
+        }
+     .details-container {
+            padding: 20px;
+        }
+        .logo {
+            font-size: 24px; /* Logo text size */
+            font-weight: bold; /* Bold font weight for the logo */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Card styling for consistency */
+     .card {
+          border-radius: 5px; /* Rounded corners */
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+          transition: all 0.3s ease; /* Smooth transition for hover effects */
+      }
+
+     .card:hover {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
+          transform: translateY(-2px); /* Slight lift effect on hover */
+      }
+      .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Keeps space between child elements inside the card body */
+        }
+
+        .button-container {
+            display: flex; /* Enables horizontal layout for the buttons */
+            justify-content: center; /* Centers the buttons horizontally */
+            gap: 10px; /* Adds space between the buttons */
+        }
+        .review-form textarea,
+       .review-form select,
+       .review-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            background-color: #fff;
+            resize: none;
+        }
+       .review-form button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+       .review-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+       .review-form-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+           .header {
+                flex-direction: column;
+            }
+           .logo-container img.logo-img {
+                margin-bottom: 10px; /* Adjust for vertical alignment */
+            }
+           .header-btn {
+                margin-top: 10px; /* Adjust for vertical spacing */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img src="/images/logo.jpg" alt="Appointment Details Logo" class="logo-img" style="height: 4.3rem;">
+    </div>
+    <span class="logo">VetConnect</span>
+    <nav>
+        <a href="/user/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        <a href="/user/logout" class="btn btn-danger btn-custom">LogOut</a>
+    </nav>
+</header>
+
+<div class="container details-container">
+    <h2>Appointment Details</h2>
+    
+    <!-- User Details -->
+    <div class="card">
+        <div class="card-header">User Information</div>
+        <div class="card-body">
+            <p><strong>Name:</strong> <%= appointment.doctorInfo.username %></p>
+            <p><strong>Email:</strong> <%= appointment.doctorInfo.email %></p>
+            <p><strong>Contact:</strong> <%= appointment.doctorInfo.contact %></p>
+        </div>
+    </div>
+  
+    <!-- Pet Details -->
+    <div class="card mt-3">
+        <div class="card-header">Pet Information</div>
+        <div class="card-body">
+            <p><strong>Name:</strong> <%= appointment.pet.petName %></p>
+            <p><strong>Type:</strong> <%= appointment.pet.type %></p>
+            <p><strong>Age:</strong> <%= appointment.pet.age %> Years</p>
+            <p><strong>Medical History:</strong> <%= appointment.pet.medicHistory %></p>
+        </div>
+    </div>
+    
+    <!-- Appointment Details -->
+    <div class="card mt-3">
+        <div class="card-header">Appointment Information</div>
+        <div class="card-body">
+            <p><strong>Date:</strong> <%= appointment.date.toDateString() %></p>
+            <p><strong>Time:</strong> <%= appointment.timeSlot %></p>
+            <p><strong>Purpose:</strong> <%= appointment.category %></p>
+            <p><strong>Status:</strong> <%= appointment.status %></p>
+            <% if (appointment.status !== "completed") { %>
+            <div class="button-container">
+                <button class="btn btn-primary btn-custom" onclick="reschedule('<%= appointment.id %>')">Reschedule</button>
+                <form action="/user/appointment/<%= appointment._id %>/cancel" method="post">
+                    <button type="submit" class="btn btn-primary btn-custom">Cancel</button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+    <% const reviewSubmitted = (appointment.doctorInfo.reviews && appointment.doctorInfo.reviews.some(review => review.userId && review.userId.toString() === userId)); %>
+    <% if ((appointment.status === 'completed') && !reviewSubmitted) { %>
+        <td>
+            <% if (!reviewSubmitted) { %>
+                <div class="review-form-container">
+                    <form class="review-form" action="/user/<%= appointment.doctorID %>/review" method="post">
+                    <textarea name="comment" placeholder="Your review..."></textarea>
+                    <select name="rating">
+                        <option value="" disabled selected>Give Your Rating</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                    <button type="submit">Submit Review</button>
+                </form>
+                </div>
+            <% } %>
+        </td>
+    <% } %>
+</div>
+
+<script>
+    function reschedule(appointmentId) {
+        var url = "/user/appointment/" + encodeURIComponent(appointmentId) + "/reschedule";
+        window.location.href = url;
+    };
+</script>
+</body>
+</html>
